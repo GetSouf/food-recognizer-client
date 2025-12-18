@@ -17,7 +17,7 @@ class ProfileEditDialog extends StatefulWidget {
 class _ProfileEditDialogState extends State<ProfileEditDialog> {
   final _heightCtrl = TextEditingController();
   final _weightCtrl = TextEditingController();
-  int _selectedGoal = 0; // 0: Поддержание, 1: Набор массы, 2: Похудение
+  int _selectedGoal = 0; 
   final List<String> _goalOptions = ['Поддержание', 'Набор', 'Похудение'];
   final _formKey = GlobalKey<FormState>();
   bool _isCalculating = false;
@@ -40,7 +40,7 @@ class _ProfileEditDialogState extends State<ProfileEditDialog> {
 
     try {
       await UserService.updateProfile(heightCm: heightCm, weightKg: weightKg);
-      Navigator.pop(context); // Закрываем диалог после успеха
+      Navigator.pop(context); 
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Профиль обновлён')));
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Ошибка: $e')));
@@ -67,7 +67,7 @@ class _ProfileEditDialogState extends State<ProfileEditDialog> {
       final newGoal = UserService.calculateDailyGoal(bmr, goal);
       await UserService.updateDailyGoal(newGoal);
       widget.onGoalUpdated(newGoal);
-      Navigator.pop(context); // Закрываем диалог после успеха
+      Navigator.pop(context); 
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Норма рассчитана и сохранена')));
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Ошибка при расчёте: $e')));
@@ -129,7 +129,7 @@ class _ProfileEditDialogState extends State<ProfileEditDialog> {
           onPressed: _updateProfile,
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6), // Меньший padding
-            textStyle: const TextStyle(fontSize: 12), // Меньший шрифт
+            textStyle: const TextStyle(fontSize: 12), 
           ),
           child: const Text('Обновить профиль'),
         ),
@@ -137,7 +137,7 @@ class _ProfileEditDialogState extends State<ProfileEditDialog> {
           onPressed: _isCalculating ? null : _calculateDailyGoal,
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6), // Меньший padding
-            textStyle: const TextStyle(fontSize: 12), // Меньший шрифт
+            textStyle: const TextStyle(fontSize: 12), 
           ),
           child: _isCalculating
               ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2))

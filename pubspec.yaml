@@ -41,6 +41,7 @@ dependencies:
   flutter_displaymode: ^0.7.0
   flutter_cache_manager: ^3.4.1
   cached_network_image: ^3.4.1
+  camera: ^0.11.2+1
 
 dev_dependencies:
   flutter_test:

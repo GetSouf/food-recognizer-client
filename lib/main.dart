@@ -24,7 +24,7 @@ void main() async {
       meals = await DataService.getMeals();
       profile = await UserService.getProfile();
     } catch (e) {
-      // Опционально: логирование ошибки
+      
       print('Auth error on startup: $e');
       hasError = true;
     }
@@ -63,6 +63,7 @@ class FoodRecognizerApp extends StatelessWidget {
             theme: lightTheme,
             darkTheme: darkTheme,
             themeMode: themeProvider.themeMode,
+            debugShowCheckedModeBanner: false,
             home: BottomNavScreen(
               token: token,
               preloadedMeals: meals,

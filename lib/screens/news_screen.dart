@@ -24,7 +24,7 @@ class _NewsScreenState extends State<NewsScreen> {
   }
 
   Future<void> _preloadNews() async {
-    await NewsService.getNews(); // Предзагрузка для теста
+    await NewsService.getNews(); 
   }
 
   @override

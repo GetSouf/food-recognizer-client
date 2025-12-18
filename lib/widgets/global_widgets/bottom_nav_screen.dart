@@ -94,8 +94,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
           try {
             final meals = await DataService.getMeals();
             setState(() {
-              // Нельзя мутировать widget.preloadedMeals
-              // Но лучше перепроектировать архитектуру (например, через Provider)
+ 
             });
           } catch (e) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Ошибка обновления: $e')));

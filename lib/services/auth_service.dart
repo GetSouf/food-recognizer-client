@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 Future<Map<String, dynamic>> registerUser(String username, String email, String password) async {
   final response = await http.post(
-    Uri.parse('http://46.8.29.113:8000/auth/register'),  // Добавил /auth
+    Uri.parse('http://46.8.29.113:8000/auth/register'),  
     headers: {'Content-Type': 'application/json'},
     body: jsonEncode({'username': username, 'email': email, 'password': password}),
   );
@@ -13,7 +13,7 @@ Future<Map<String, dynamic>> registerUser(String username, String email, String 
 
 Future<Map<String, dynamic>> loginUser(String username, String password) async {
   final response = await http.post(
-    Uri.parse('http://46.8.29.113:8000/auth/login'),  // Добавил /auth
+    Uri.parse('http://46.8.29.113:8000/auth/login'),  
     headers: {'Content-Type': 'application/json'},
     body: jsonEncode({'username': username, 'password': password}),
   );
