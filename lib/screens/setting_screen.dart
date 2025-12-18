@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:food_recognizer_client/services/user_service.dart';
 import '../providers/theme_provider.dart';
+import 'package:webview_flutter/webview_flutter.dart'; // Добавляем импорт
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -185,6 +186,28 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   subtitle: 'Как мы используем ваши данные',
                   onTap: () {
                     // Можно открыть webview или показать текст
+                  },
+                ),
+
+                // === ДОКУМЕНТАЦИЯ ===
+                _buildSettingTile(
+                  icon: Icons.menu_book,
+                  title: 'Документация',
+                  subtitle: 'Руководство пользователя и справка',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Scaffold(
+                          appBar: AppBar(title: const Text('Документация')),
+                          body: WebViewWidget(
+                            controller: WebViewController()
+                              ..setJavaScriptMode(JavaScriptMode.unrestricted)
+                              ..loadRequest(Uri.parse('https://getsouf.github.io/food-recognizer-client/')),
+                          ),
+                        ),
+                      ),
+                    );
                   },
                 ),
 
