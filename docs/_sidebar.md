@@ -1,0 +1,8 @@
+- [Главная](/)
+- Начало работы
+  - [Установка](getting-started/installation.md)
+  - [Конфигурация](getting-started/configuration.md)
+- Функциональность
+  - [Распознавание блюд](features/food-recognition.md)
+  - [Управление профилем](features/profile-management.md)
+  - [Отслеживание нутриентов](features/nutrition-tracking.md)
