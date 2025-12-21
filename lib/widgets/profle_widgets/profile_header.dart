@@ -12,7 +12,7 @@ class ProfileHeader extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Colors.blue[100]!, Colors.white],
+          colors: [const Color.fromARGB(255, 255, 255, 255)!, Colors.white],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),

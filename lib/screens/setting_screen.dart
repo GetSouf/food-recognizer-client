@@ -1,12 +1,13 @@
 // lib/screens/settings_screen.dart
 
 import 'package:flutter/material.dart';
+import 'package:food_recognizer_client/screens/login_screen.dart';
 import 'package:food_recognizer_client/widgets/global_widgets/pull_to_refresh_scaffold.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:food_recognizer_client/services/user_service.dart';
 import '../providers/theme_provider.dart';
-import 'package:webview_flutter/webview_flutter.dart'; // Добавляем импорт
+import 'package:webview_flutter/webview_flutter.dart'; 
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -71,12 +72,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
     }
   }
 
-  Future<void> _logout() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove("token");
-    if (!mounted) return;
-    Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
-  }
+ Future<void> _logout() async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.remove("token");
+  
+  if (!mounted) return;
+
+  // Полный выход: заменяем всё на LoginScreen
+  Navigator.of(context).pushAndRemoveUntil(
+    MaterialPageRoute(builder: (context) => const LoginScreen()),
+    (Route<dynamic> route) => false,
+  );
+}
 
   Future<String> _getAppVersion() async {
     // Заглушка — можно подключить package_info_plus
@@ -134,18 +141,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
 
                 // === Тема ===
-                Card(
+                /*Card(
                   margin: const EdgeInsets.only(bottom: 8),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                   child: SwitchListTile.adaptive(
                     title: const Text('Тёмная тема'),
-                    subtitle: Text(isDark ? 'Включена' : 'Выключена'),
+                    subtitle: Text(sisDark ? 'Включена' : 'Выключена'),
                     value: themeProvider.themeMode == ThemeMode.dark,
                     onChanged: (value) => themeProvider.toggleTheme(),
                     activeColor: theme.primaryColor,
                     dense: true,
                   ),
-                ),
+                ),*/
 
                 // === Уведомления ===
                 _buildSettingTile(
@@ -185,7 +192,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   title: 'Политика конфиденциальности',
                   subtitle: 'Как мы используем ваши данные',
                   onTap: () {
-                    // Можно открыть webview или показать текст
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Scaffold(
+                          appBar: AppBar(title: const Text('Документация')),
+                          body: WebViewWidget(
+                            controller: WebViewController()
+                              ..setJavaScriptMode(JavaScriptMode.unrestricted)
+                              ..loadRequest(Uri.parse('https://getsouf.github.io/food-recognizer-client/')),
+                          ),
+                        ),
+                      ),
+                    );
                   },
                 ),
 

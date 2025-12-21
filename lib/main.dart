@@ -59,7 +59,7 @@ class FoodRecognizerApp extends StatelessWidget {
       child: Consumer<ThemeProvider>(
         builder: (context, themeProvider, child) {
           return MaterialApp(
-            title: 'Food Recognizer',
+            title: 'FoodAi',
             theme: lightTheme,
             darkTheme: darkTheme,
             themeMode: themeProvider.themeMode,
